@@ -1,4 +1,4 @@
-<?php namespace Magiczne\SeoTweaker\Components;
+<?php namespace Fvera\SeoTweaker\Components;
 
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Event;
@@ -24,8 +24,8 @@ class Seo extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'magiczne.seotweaker::lang.components.seo.name',
-            'description' => 'magiczne.seotweaker::lang.components.seo.description'
+            'name' => 'fvera.seotweaker::lang.components.seo.name',
+            'description' => 'fvera.seotweaker::lang.components.seo.description'
         ];
     }
 
@@ -33,17 +33,17 @@ class Seo extends ComponentBase
     {
         return [
             'includeOpenGraph' => [
-                'title' => 'magiczne.seotweaker::lang.components.seo.properties.include_open_graph.title',
+                'title' => 'fvera.seotweaker::lang.components.seo.properties.include_open_graph.title',
                 'type' => 'checkbox',
                 'default' => true
             ],
             'includeTwitter' => [
-                'title' => 'magiczne.seotweaker::lang.components.seo.properties.include_twitter.title',
+                'title' => 'fvera.seotweaker::lang.components.seo.properties.include_twitter.title',
                 'type' => 'checkbox',
                 'default' => true
             ],
             'includeJsonLd' => [
-                'title' => 'magiczne.seotweaker::lang.components.seo.properties.include_json_ld.title',
+                'title' => 'fvera.seotweaker::lang.components.seo.properties.include_json_ld.title',
                 'type' => 'checkbox',
                 'default' => true
             ]
@@ -73,12 +73,12 @@ class Seo extends ComponentBase
 
             $this->title = $post->title;
             $this->description = $post->excerpt;
-            $this->keywords = $post->seo_keywords;       
+            $this->keywords = $post->seo_keywords;
             $this->redirectUrl = $post->seo_redirect_url;
             $this->robotsIndex = $post->seo_robots_index;
             $this->robotsFollow = $post->seo_robots_follow;
 
-            // The seo_canonical_url saves empty anyway so we need to check 
+            // The seo_canonical_url saves empty anyway so we need to check
             // for it instead of relying on its (non)existence
             if ( !empty($post->seo_canonical_url) ) {
                 $this->canonicalUrl = $post->seo_canonical_url;
@@ -108,9 +108,9 @@ class Seo extends ComponentBase
             // lang prefix is not in our way, so we are removing it from url.
             if (PluginManager::instance()->hasPlugin('RainLab.Translate')) {
                 // Remove language prefix from URL to get clean URL
-                // Simply exploding the URL after first slash does not work for 
+                // Simply exploding the URL after first slash does not work for
                 // multilevel websites
-                $url = substr($url, 3); 
+                $url = substr($url, 3);
 
                 // If we're in root then use root as URL
                 if (!strlen($url)) {
@@ -120,12 +120,12 @@ class Seo extends ComponentBase
 
             $router = new Router(Theme::getActiveTheme());
             $page = $router->findByUrl($url);
-            // Proper way of obtaining localized/translated viewBag data from 
-            // Static page. According to documentation the getViewBag() method 
+            // Proper way of obtaining localized/translated viewBag data from
+            // Static page. According to documentation the getViewBag() method
             // is for internal use only.
             $viewBag = $page->viewBag;
 
-            // Updated to reflect change from $page->getViewBag() to $page->viewBag 
+            // Updated to reflect change from $page->getViewBag() to $page->viewBag
             // which is an array now
             $this->title = $viewBag['meta_title'] ?? $viewBag['title'];
             $this->description = $viewBag['meta_description'] ?? null;

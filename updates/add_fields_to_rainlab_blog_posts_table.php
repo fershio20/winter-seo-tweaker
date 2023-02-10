@@ -1,4 +1,4 @@
-<?php namespace Magiczne\SeoTweaker\Updates;
+<?php namespace Fvera\SeoTweaker\Updates;
 
 use October\Rain\Database\Updates\Migration;
 use October\Rain\Support\Facades\Schema;
@@ -8,9 +8,9 @@ class AddFieldsToRainLabBlogPostsTable extends Migration
 {
     public function up()
     {
-        if (PluginManager::instance()->hasPlugin('RainLab.Blog'))
+        if (PluginManager::instance()->hasPlugin('Winter.Blog'))
         {
-            Schema::table('rainlab_blog_posts', function ($table) {
+            Schema::table('winter_blog_posts', function ($table) {
                 $table->string('seo_keywords')->nullable();
                 $table->string('seo_canonical_url')->nullable();
                 $table->string('seo_redirect_url')->nullable();
@@ -22,9 +22,9 @@ class AddFieldsToRainLabBlogPostsTable extends Migration
 
     public function down()
     {
-        if (PluginManager::instance()->hasPlugin('RainLab.Blog'))
+        if (PluginManager::instance()->hasPlugin('Winter.Blog'))
         {
-            Schema::table('rainlab_blog_posts', function ($table) {
+            Schema::table('winter_blog_posts', function ($table) {
                 $table->dropColumn('seo_keywords');
                 $table->dropColumn('seo_canonical_url');
                 $table->dropColumn('seo_redirect_url');

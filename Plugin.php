@@ -1,10 +1,10 @@
-<?php namespace Magiczne\SeoTweaker;
+<?php namespace Fvera\SeoTweaker;
 
 use Backend\Widgets\Form;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
 use Illuminate\Support\Facades\Event;
-use Magiczne\SeoTweaker\Components\Seo;
+use Fvera\SeoTweaker\Components\Seo;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Support\Facades\Yaml;
 use System\Classes\PluginBase;
@@ -31,7 +31,7 @@ class Plugin extends PluginBase
             if ($form->isNested) {
                 return;
             }
-                        
+
             $theme = Theme::getEditTheme();
 
             if (!$theme) {
@@ -41,7 +41,7 @@ class Plugin extends PluginBase
             // RainLab.Pages plugin
             if (PluginManager::instance()->hasPlugin('RainLab.Pages')
                 && $form->model instanceof \RainLab\Pages\Classes\Page) {
-                $fields = Yaml::parseFile(plugins_path('magiczne/seotweaker/config/seo_fields.yaml'));
+                $fields = Yaml::parseFile(plugins_path('fvera/seotweaker/config/seo_fields.yaml'));
 
                 foreach ($fields as $key => $item) {
                     $form->tabs['fields']["viewBag[{$key}]"] = $item;
@@ -51,7 +51,7 @@ class Plugin extends PluginBase
             // RainLab.Blog plugin
             if (PluginManager::instance()->hasPlugin('RainLab.Blog')
                 && $form->model instanceof \RainLab\Blog\Models\Post) {
-                $fields = Yaml::parseFile(plugins_path('magiczne/seotweaker/config/seo_fields.yaml'));
+                $fields = Yaml::parseFile(plugins_path('fvera/seotweaker/config/seo_fields.yaml'));
 
                 foreach ($fields as $key => $item) {
                     $item['tab'] = 'SEO';
@@ -61,7 +61,7 @@ class Plugin extends PluginBase
 
             // Default CMS
             if ($form->model instanceof Page) {
-                $fields = Yaml::parseFile(plugins_path('magiczne/seotweaker/config/seo_fields.yaml'));
+                $fields = Yaml::parseFile(plugins_path('fvera/seotweaker/config/seo_fields.yaml'));
 
                 foreach ($fields as $key => $item) {
                     $form->tabs['fields']["settings[{$key}]"] = $item;

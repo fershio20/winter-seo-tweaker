@@ -1,7 +1,7 @@
 plugin:
-    code: Magiczne.SeoTweaker
-    name: magiczne.seotweaker::lang.plugin.name
-    description: magiczne.seotweaker::lang.plugin.description
-    author: Michał Kleszczyński
+    code: Fvera.SeoTweaker
+    name: fvera.seotweaker::lang.plugin.name
+    description: fvera.seotweaker::lang.plugin.description
+    author: Fernando Vera
     icon: icon-ambulance
-    homepage: https://github.com/Magiczne/october-seo-tweaker
+    homepage: https://github.com/Fvera/october-seo-tweaker
